@@ -22,6 +22,9 @@ gcc pollucom.c -o pollucom
 Help is available using
 `  ./pollucom -h`
 
+## before you start it the first time!
+**Press the button** on your PolluCom E unit. After a short press, the unit will respond to IR signals for one hour. To keep it in listen mode, start the programm (at least) once per hour.
+
 ## example output
 ```
 pi@zero1:~ $ ./pollucom
@@ -33,6 +36,7 @@ Durchflusstemp.[°C]: 42.9
 Ruecklauftemp.[°C]: 37.8
 Temperaturdiff.[K]: 5.099
 ```
+Yes, it works just fine on a Raspberry Pi zero.
 
 ## what next?
 grep the lines you're interested in. Put everything into a cron job and send the data to a volkszaehler instance logging that data. One fine day this might even turn into a volkszaehler plugin, who knows.
