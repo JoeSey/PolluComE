@@ -1,5 +1,5 @@
 # PolluComE
-Sensus Pollucom IR reader helper for Linux/Raspberry Pi
+[Sensus Pollucom E](https://sensus.com/de/products/pollucom-e-waerme-kaeltezaehler/)Ⓡ IR reader helper for Linux/Raspberry Pi. Should work with any USB-connected IR reader, tested with the [Weidmann USB Optokopf](https://shop.weidmann-elektronik.de/index.php?page=product&info=24).
 
 reads data from an IR head and sends data to stdout
 
