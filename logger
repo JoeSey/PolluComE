@@ -1,0 +1,24 @@
+#!/bin/bash
+
+device="/dev/ttyUSB0"
+uid_leistung="19cfaae0-CHANGEME-f9"
+uid_energie="34f19630-CHANGEME-73"
+url_vz="http://192.168.1.1/vz/middleware.php/data/"
+pollucom_exe="/home/pi/pollucom"
+
+while true
+do
+  $pollucom_exe -d $device > /tmp/pollucom.$$
+  p=$(cat /tmp/pollucom.$$ | grep Leistung | sed 's/Leistung\[W\]: //')
+  if [ -z $p ]; then $pollucom_exe -d $device > /tmp/pollucom.$$; p=$(cat /tmp/pollucom.$$ |grep Leistung | sed 's/Leistung\[W\]: //'); fi
+  if [ ! -z $p ]; then
+    e=$(cat /tmp/pollucom.$$ | grep Energie | sed 's/Energie\[kWh\]: //')
+    wget -O - -q "$url_vz/$uid_leistung.json?operation=add&value=$p";
+    wget -O - -q "$url_vz/$uid_energie.json?operation=add&value=$e";
+    echo $p
+  fi
+  date
+  rm /tmp/pollucom.$$
+  sleep 3m
+done
+
